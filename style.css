@@ -1,0 +1,87 @@
+* {
+}
+
+#streamer-list {
+	max-width: 45em;
+	_border: 1px solid red;
+}
+
+.streamer {
+	display: inline-block;
+	width: 100%;
+	height: 5em;
+	/*height: 100px; */
+	/*line-height: 100px;*/
+	
+	border: 1px solid #aaaaaa;
+	
+}
+
+/* --- STUFF THAT GOES INSIDE A '.streaner' CONTAINER START --- */
+.streamer > * {
+	vertical-align: middle;
+	display: inline-block;
+	
+}
+.streamer > * > * {
+	vertical-align: middle;
+}
+.avatar {
+	
+	height: 100%; /* width = '.streamer' height, avatar images are squares */
+}
+/* .textbox holds both .username and .current */
+.textbox {
+	width: calc(100% - 5em); /* change to calc(100% - 5em) once debugging is done - .streamer width minus avatar*/
+	max-height: 100%;
+
+}
+.username {
+	display: inline-block;
+	/* padding: 10px; */
+	width: 8em;
+	height: 200%;
+	text-align: center;
+	
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	
+}
+	/* Game being played and description, or "Offline" message */
+.current {
+	
+	display: inline-block;
+	max-width: calc( 100% - 8em); /* container minus .username*/
+	text-align: center justify;
+	color: #aaaaaa;
+}
+/*
+if the "current" box width is less than 8em, stack it under the username
+image:5em username:8em current:8em misc:1em = 22em used in @media
+*/
+
+@media (max-width: 22em) {
+	.textbox {
+		text-align: center;
+		vertical-align: top;
+	}
+	.textbox > * {
+		display: block;
+		width: 100%;
+		
+	}
+	.username {
+	}
+	.current {
+		vertical-align: bottom;
+		height: 4em;
+		max-width: 100%;
+		
+
+	}
+}
+
+/* --- STUFF THAT GOES INSIDE A '.streaner' CONTAINER END --- */
+	
+	
