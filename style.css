@@ -10,9 +10,10 @@
 	display: inline-block;
 	width: 100%;
 	
-	
-	height: 5em;
-	
+	min-height: 5em; /* 
+	changed from `height: 5em;` to make tab height get bigger if there is too much text 
+	`.avatar` height needs to be the same as this `min-height` (was changed from `100%`)
+	*/
 	
 	/*height: 100px; */
 	/*line-height: 100px;*/
@@ -32,11 +33,12 @@
 }
 .avatar {
 	
-	height: 100%; /* width = '.streamer' height, avatar images are squares */
+	_height: 100%;
+	height: 5em; /* see `.streamer` min-height */
 }
 /* .textbox holds both .username and .current */
 .textbox {
-	width: calc(100% - 5em); /* change to calc(100% - 5em) once debugging is done - .streamer width minus avatar*/
+	width: calc(100% - 5em ); /* change to calc(100% - 5em) once debugging is done - .streamer width minus avatar*/
 	max-height: 100%;
 }
 .username {
@@ -58,7 +60,7 @@
 	max-width: calc( 100% - 8em); /* container minus .username*/
 	text-align: center justify;
 	color: #aaaaaa;
-	
+		
 }
 /*
 if the "current" box width is less than 8em, stack it under the username
@@ -76,10 +78,11 @@ image:5em username:8em current:8em misc:1em = 22em used in @media
 		
 	}
 	.username {
+		height: 1em; 
 	}
 	.current {
 		vertical-align: bottom;
-		height: 4em;
+		min-height: 4em;
 		max-width: 100%;
 		
 
