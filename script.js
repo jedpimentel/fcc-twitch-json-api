@@ -78,31 +78,27 @@ function createChannelLine(username, listID) {
 		if (data.stream) {
 			console.log('stream should update');
 			console.log(channelContainer.getElementsByClassName("current"));
+			console.log(data);
 			var gameAndDescription = data.stream.game + ": " + data.stream.channel.status;
 			channelContainer.getElementsByClassName("current")[0].innerHTML = gameAndDescription;
+			// move this channel to top of list
+			var channelAtTopOfList = document.getElementsByClassName('streamer')[0];
+			var onlineChannel = document.getElementById(data.stream.channel.display_name);
+			channelContainer.parentNode.insertBefore(channelContainer, channelAtTopOfList)
 			// maybe also get the data.stream.channel.banner?
-		} else if (data.status = 422) {
+		} else if (data.status == 422) {
 			console.log("DANGER WILL ROBINSON DANGER");
-			channelContainer.getElementsByClassName("current").innerHTML = "Account has been deleted";
+			channelContainer.getElementsByClassName("current")[0].innerHTML = "Account has been deleted";
+			// move this channel to bottom of list!
+			var channelList = document.getElementsByClassName('streamer');
+			var channelAtBottomOfList = channelList[channelList.length]; /* wanted to use 'channelList.length-1' but '.insertBefore' was not working */
+			channelContainer.parentNode.insertBefore(channelContainer, channelAtBottomOfList)
 		}
 	});
-	
-	this.html = 
-		'<div id="streamer-list">'
-			'<div class="streamer">'
-				'<img src="' + this.avatar + '" class="avatar">'
-				'<span class="username">' + this.name + '</span>'
-				'<span class="current">' + this.game + '</span>'
-				'<span class="description">' + this.description + '</span>'
-			'</div><!--end .streamer-->'
-		'</div> <!--end #streamer-list-->'
 } 
 
-// can use delay null 
 
 
-/*
-$.getJSON('https://api.twitch.tv/kraken/streams?stream_type=all&channel='+ channels.join(','), function(data) {
-	console.log(data);
-});
-*/
+
+
+

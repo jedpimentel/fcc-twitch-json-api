@@ -9,7 +9,11 @@
 .streamer {
 	display: inline-block;
 	width: 100%;
+	
+	
 	height: 5em;
+	
+	
 	/*height: 100px; */
 	/*line-height: 100px;*/
 	
@@ -34,7 +38,6 @@
 .textbox {
 	width: calc(100% - 5em); /* change to calc(100% - 5em) once debugging is done - .streamer width minus avatar*/
 	max-height: 100%;
-
 }
 .username {
 	display: inline-block;
@@ -55,6 +58,7 @@
 	max-width: calc( 100% - 8em); /* container minus .username*/
 	text-align: center justify;
 	color: #aaaaaa;
+	
 }
 /*
 if the "current" box width is less than 8em, stack it under the username
