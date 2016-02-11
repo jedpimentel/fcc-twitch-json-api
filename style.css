@@ -1,14 +1,34 @@
 * {
 }
 
+body {
+	text-align: center;
+	margin: 0;
+}
+
 #streamer-list {
+	text-align: left;
+	display: inline-block;
 	max-width: 45em;
+	_border: 1px solid red;
+	_background: #EEE;
+}
+
+#title {
+	width: 100%;
+	margin: 0;
+	text-align: center;
+	font-family: cambria;
+	
+	background-color: black;
+	color: white;
+	
 	_border: 1px solid red;
 }
 
 .streamer {
 	display: inline-block;
-	width: 100%;
+	width: calc( 100% - 2px ); /*due to 2px border*/
 	
 	min-height: 5em; /* 
 	changed from `height: 5em;` to make tab height get bigger if there is too much text 
@@ -21,6 +41,11 @@
 	border: 1px solid #aaaaaa;
 	
 }
+
+.streamer:hover {
+	background-color: #FAFAFA;
+}
+
 
 /* --- STUFF THAT GOES INSIDE A '.streaner' CONTAINER START --- */
 .streamer > * {
@@ -48,7 +73,6 @@
 	height: 200%;
 	text-align: center;
 	
-	background-color: white;
 	color: black;
 	font-weight: bold;
 	
@@ -70,7 +94,6 @@ image:5em username:8em current:8em misc:1em = 22em used in @media
 @media (max-width: 22em) {
 	.textbox {
 		text-align: center;
-		vertical-align: top;
 	}
 	.textbox > * {
 		display: block;
@@ -91,4 +114,6 @@ image:5em username:8em current:8em misc:1em = 22em used in @media
 
 /* --- STUFF THAT GOES INSIDE A '.streaner' CONTAINER END --- */
 	
+	
+
 	

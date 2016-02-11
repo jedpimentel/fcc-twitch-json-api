@@ -2,7 +2,6 @@
 I used a bit of jQuery here, but I think I'm more comfortable with vanilla JavaScript since typing speed isn't really a bottleneck for me yet. It's still great for cross-browser compatability though.
 */
 
-
 var channelNames = [
 	"freecodecamp", 
 	"storbeck", 
@@ -51,7 +50,7 @@ var defaultAvatar = 'http://dummyimage.com/50x50/ecf0e7/5c5457.jpg&text=0x3F';
 // each line will be defined by ID = username
 function createChannelLine(username, listID) {
 	var list = $('#' + listID);
-	list.append('<div id="' + username + '" class="streamer"></div>')
+	list.append('<a id="' + username + '" class="streamer"></a>')
 	var channelContainer = document.getElementById(username);
 	
 	// CHANNEL AVATAR - class="avatar"
@@ -71,6 +70,7 @@ function createChannelLine(username, listID) {
 		channelContainer.getElementsByClassName("avatar")[0].src = channel.logo || defaultAvatar;
 		// channelLink does nothing right now !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		var channelLink = channel.url;
+		channelContainer.href =  channel.url;
 	});
 	// check if streaming, if so update what they are streaming
 	$.getJSON('https://api.twitch.tv/kraken/streams/' + username + '?callback=?', function (data) {
@@ -81,7 +81,8 @@ function createChannelLine(username, listID) {
 			console.log(data);
 			var gameAndDescription = data.stream.game + ": " + data.stream.channel.status;
 			channelContainer.getElementsByClassName("current")[0].innerHTML = gameAndDescription;
-			// move this channel to top of list
+			channelContainer.getElementsByClassName("current")[0].parentElement.parentElement.style.borderColor = 'black';
+			// since channel is streaming, move this channel to top of list
 			var channelAtTopOfList = document.getElementsByClassName('streamer')[0];
 			var onlineChannel = document.getElementById(data.stream.channel.display_name);
 			channelContainer.parentNode.insertBefore(channelContainer, channelAtTopOfList)
@@ -89,9 +90,9 @@ function createChannelLine(username, listID) {
 		} else if (data.status == 422) {
 			console.log("DANGER WILL ROBINSON DANGER");
 			channelContainer.getElementsByClassName("current")[0].innerHTML = "Account has been deleted";
-			// move this channel to bottom of list!
+			// since channel was deleted, move this channel to bottom of list!
 			var channelList = document.getElementsByClassName('streamer');
-			var channelAtBottomOfList = channelList[channelList.length]; /* wanted to use 'channelList.length-1' but '.insertBefore' was not working */
+			var channelAtBottomOfList = channelList[channelList.length];
 			channelContainer.parentNode.insertBefore(channelContainer, channelAtBottomOfList)
 		}
 	});
