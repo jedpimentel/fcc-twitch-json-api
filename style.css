@@ -1,25 +1,48 @@
 * {
 }
 
+body {
+	text-align: center;
+	margin: 0;
+}
+
 #streamer-list {
+	text-align: left;
+	display: inline-block;
 	max-width: 45em;
+	_border: 1px solid red;
+	_background: #EEE;
+}
+
+#title {
+	width: 100%;
+	margin: 0;
+	text-align: center;
+	font-family: cambria;
+	
+	background-color: black;
+	color: white;
+	
 	_border: 1px solid red;
 }
 
 .streamer {
 	display: inline-block;
-	width: 100%;
+	width: calc( 100% - 2px ); /*due to 2px border*/
 	
-	
-	height: 5em;
-	
-	
-	/*height: 100px; */
-	/*line-height: 100px;*/
+	min-height: 5em; /* 
+	changed from `height: 5em;` to make tab height get bigger if there is too much text 
+	`.avatar` height needs to be the same as this `min-height` (was changed from `100%`)
+	*/
 	
 	border: 1px solid #aaaaaa;
 	
 }
+
+.streamer:hover {
+	background-color: #FAFAFA;
+}
+
 
 /* --- STUFF THAT GOES INSIDE A '.streaner' CONTAINER START --- */
 .streamer > * {
@@ -31,22 +54,22 @@
 	vertical-align: middle;
 }
 .avatar {
-	
-	height: 100%; /* width = '.streamer' height, avatar images are squares */
+	_height: 100%;
+	height: 5em; /* see `.streamer` min-height */
+	width: 5em;
+	background-color: #F0F0F0;
 }
 /* .textbox holds both .username and .current */
 .textbox {
-	width: calc(100% - 5em); /* change to calc(100% - 5em) once debugging is done - .streamer width minus avatar*/
+	width: calc(100% - 5em ); /* change to calc(100% - 5em) once debugging is done - .streamer width minus avatar*/
 	max-height: 100%;
 }
 .username {
 	display: inline-block;
-	/* padding: 10px; */
 	width: 8em;
 	height: 200%;
 	text-align: center;
 	
-	background-color: white;
 	color: black;
 	font-weight: bold;
 	
@@ -58,17 +81,15 @@
 	max-width: calc( 100% - 8em); /* container minus .username*/
 	text-align: center justify;
 	color: #aaaaaa;
-	
+		
 }
 /*
 if the "current" box width is less than 8em, stack it under the username
 image:5em username:8em current:8em misc:1em = 22em used in @media
 */
-
 @media (max-width: 22em) {
 	.textbox {
 		text-align: center;
-		vertical-align: top;
 	}
 	.textbox > * {
 		display: block;
@@ -76,16 +97,18 @@ image:5em username:8em current:8em misc:1em = 22em used in @media
 		
 	}
 	.username {
+		height: 1em; 
 	}
 	.current {
 		vertical-align: bottom;
-		height: 4em;
+		min-height: 4em;
 		max-width: 100%;
 		
 
 	}
 }
-
 /* --- STUFF THAT GOES INSIDE A '.streaner' CONTAINER END --- */
 	
+	
+
 	
